@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Incidence;
 
@@ -21,7 +22,16 @@ class IncidenceController extends Controller
             'location' => $request->input('location'),
             'state' => $request->input('state')
         ]);
+            //Tiene que redirigir a otra vista
+        return redirect()->to('/login');
+    }
+    function getData(){
+        $data['data'] = DB::table("incidences")->get();
 
-        return redirect()->route('/create-sucess');
+        if($data != null)
+            return view('/home', $data);
+        else{
+            return view("/home");
+        }
     }
 }

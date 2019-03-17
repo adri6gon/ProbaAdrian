@@ -24,4 +24,4 @@ Route::post('/add-incidence', 'IncidenceController@create');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'IncidenceController@getData')->name('home');
