@@ -20,7 +20,13 @@ Route::get('/create-sucess', function () {
     return redirect('welcome');
 });
 
+Route::get('/edit-incidence','IncidenceController@getRow');
+
+
+
 Route::post('/add-incidence', 'IncidenceController@create');
+
+Route::post('/edit-incidence', 'IncidenceController@edit');
 
 Auth::routes();
 

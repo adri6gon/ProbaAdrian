@@ -34,4 +34,33 @@ class IncidenceController extends Controller
             return view("/home");
         }
     }
+
+    function getRow(Request $request){
+        $id = $request->input('id');
+        $data['incidence'] = DB::table('incidences')->where('id', $id)->first();
+        
+        if($data != null)
+            return view('/edit', $data);
+        else    
+            return view('/home');
+    }
+
+    function edit(Request $request){
+        $id = $request->input('id');
+        $incidence = Incidence::find($id);
+
+        $incidence->name = $request->input('name');
+        $incidence->lastname = $request->input('lastname');
+        $incidence->phone = $request->input('phone');
+        $incidence->email = $request->input('email');
+        $incidence->image = $request->input('image');
+        $incidence->category = $request->input('category');
+        $incidence->description = $request->input('description');
+        $incidence->location = $request->input('location');
+        $incidence->state = $request->input('state');
+
+        $incidence->save();
+        //Faltan redirecciones a vista de OK
+        return redirect()->to('/');
+    }
 }

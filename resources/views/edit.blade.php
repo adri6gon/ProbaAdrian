@@ -82,14 +82,14 @@
                <!-- <div class="title m-b-md">
                     Laravel
                 </div>-->
-                <form method="POST" action="/add-incidence">
+                <form method="POST" action="/edit-incidence?id={{$incidence->id}}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$incidence->name}}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -102,7 +102,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{$incidence->lastname}}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +115,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="email" value="{{ old('lastname') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="email" value="{{$incidence->email}}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback" role="alert">
@@ -128,7 +128,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="phone" value="{{ old('lastname') }}" required autofocus>
+                                <input id="phone" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="phone" value="{{$incidence->phone}}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" value="{{ old('lastname') }}" required autofocus>
+                                <input id="image" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" value="{{$incidence->image}}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback" role="alert">
@@ -154,7 +154,7 @@
                             <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('lastname') }}" required autofocus>
+                                <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{$incidence->location}}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback" role="alert">
@@ -168,9 +168,23 @@
 
                             <div class="col-md-6">
                                 <select id="state" name="state">
-                                    <option>Recibida</option>
-                                    <option>En Gestión</option>
-                                    <option>Solucionada</option>
+                                @switch($incidence->state)
+                                    @case("Recibida")
+                                        <option selected>Recibida</option>
+                                        <option>En Gestión</option>
+                                        <option>Solucionada</option>
+                                    @break
+                                    @case("En Gestión")
+                                        <option>Recibida</option>
+                                        <option selected>En Gestión</option>
+                                        <option>Solucionada</option>
+                                    @break
+                                    @case("Solucionada")
+                                        <option>Recibida</option>
+                                        <option>En Gestión</option>
+                                        <option selected>Solucionada</option>
+                                    @break
+                                @endswitch
                                 </select>
                             </div>
                         </div>
@@ -179,11 +193,43 @@
 
                             <div class="col-md-6">
                                 <select id="category" name="category">
-                                    <option>Iluminación</option>
-                                    <option>Jardinería</option>
-                                    <option>Alcantarillado</option>
-                                    <option>Basura</option>
-                                    <option>Otros</option>
+                                @switch($incidence->category)
+                                     @case("Iluminación")
+                                        <option selected>Iluminación</option>
+                                        <option>Jardinería</option>
+                                        <option>Alcantarillado</option>
+                                        <option>Basura</option>
+                                        <option>Otros</option>
+                                     @break
+                                     @case("Jardinería")
+                                        <option>Iluminación</option>
+                                        <option selected>Jardinería</option>
+                                        <option>Alcantarillado</option>
+                                        <option>Basura</option>
+                                        <option>Otros</option>
+                                     @break
+                                     @case("Alcantarillado")
+                                        <option>Iluminación</option>
+                                        <option>Jardinería</option>
+                                        <option selected>Alcantarillado</option>
+                                        <option>Basura</option>
+                                        <option>Otros</option>
+                                     @break
+                                     @case("Basura")
+                                        <option>Iluminación</option>
+                                        <option>Jardinería</option>
+                                        <option>Alcantarillado</option>
+                                        <option selected>Basura</option>
+                                        <option>Otros</option>
+                                     @break
+                                     @case("Otros")
+                                        <option>Iluminación</option>
+                                        <option>Jardinería</option>
+                                        <option>Alcantarillado</option>
+                                        <option>Basura</option>
+                                        <option selected>Otros</option>
+                                     @break
+                                @endswitch
                                 </select>
                             </div>
                         </div>
@@ -191,7 +237,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" name="description"></textarea>
+                                <textarea id="description" name="description">{{$incidence->description}}</textarea>
                             </div>
                         </div>
 
@@ -199,7 +245,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Añadir') }}
+                                    {{ __('Editar') }}
                                 </button>
                             </div>
                         </div>

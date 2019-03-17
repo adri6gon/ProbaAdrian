@@ -43,7 +43,7 @@
                 <td>{{$value->description}}</td>
                 <td>{{$value->location}}</td>
                 <td>{{$value->state}}</td>
-                <td><a href=""><button>Edit</button></a><a href=""><button>Show</button></a></td>
+                <td><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href=""><button>Show</button></a></td>
             </tr>
             @endforeach
         </table>
