@@ -23,26 +23,32 @@ class IncidenceController extends Controller
             'state' => $request->input('state')
         ]);
             //Tiene que redirigir a otra vista
-        return redirect()->to('/login');
+        return redirect()->to('/added');
     }
     function getData(){
         $data['data'] = DB::table("incidences")->get();
-
         if($data != null)
             return view('/home', $data);
         else{
-            return view("/home");
+            //return view("/home");
         }
     }
 
     function getRow(Request $request){
         $id = $request->input('id');
+        $path = $request->path();
+        //var_dump($path);
+        //exit();
         $data['incidence'] = DB::table('incidences')->where('id', $id)->first();
-        
-        if($data != null)
-            return view('/edit', $data);
-        else    
-            return view('/home');
+
+        if($data != null){
+            if($path == "edit-incidence")
+                return view('/edit', $data);
+            else
+                return view('/show', $data);
+        }else{    
+            return view('/message',"Error en la petición");
+        }
     }
 
     function edit(Request $request){
@@ -61,6 +67,6 @@ class IncidenceController extends Controller
 
         $incidence->save();
         //Faltan redirecciones a vista de OK
-        return redirect()->to('/');
+        return redirect()->to('/edited');
     }
 }

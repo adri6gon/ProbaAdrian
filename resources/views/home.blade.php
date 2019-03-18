@@ -4,20 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-           <!-- <div class="card">
-                <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>-->
-        <table>
+       <!-- <showtable-component></showtable-component>-->
+       <table>
             <tr>
                 <td>id</td>
                 <td>Name</td>
@@ -43,7 +31,7 @@
                 <td>{{$value->description}}</td>
                 <td>{{$value->location}}</td>
                 <td>{{$value->state}}</td>
-                <td><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href=""><button>Show</button></a></td>
+                <td><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href="{{'/show?id='.$value->id}}"><button>Show</button></a></td>
             </tr>
             @endforeach
         </table>
