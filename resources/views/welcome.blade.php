@@ -144,7 +144,7 @@
                                                     <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="image" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="image" type="file" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" data-buttonText="Browse" required autofocus>
 
                                                         @if ($errors->has('lastname'))
                                                             <span class="invalid-feedback" role="alert">

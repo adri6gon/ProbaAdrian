@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Incidence;
+use Illuminate\Http\File;
+use Storage;
 
 class IncidenceController extends Controller
 {
 
     public function create(Request $request)
     {
+       
         $incidence =  Incidence::create([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
@@ -22,10 +25,11 @@ class IncidenceController extends Controller
             'location' => $request->input('location'),
             'state' => $request->input('state')
         ]);
-            //Tiene que redirigir a otra vista
+             
         return redirect()->to('/added');
     }
-    function getData(){
+
+    public function getData(){
         $data['data'] = DB::table("incidences")->get();
         if($data != null)
             return view('/home', $data);
@@ -34,11 +38,9 @@ class IncidenceController extends Controller
         }
     }
 
-    function getRow(Request $request){
+    public function getRow(Request $request){
         $id = $request->input('id');
         $path = $request->path();
-        //var_dump($path);
-        //exit();
         $data['incidence'] = DB::table('incidences')->where('id', $id)->first();
 
         if($data != null){
@@ -51,7 +53,7 @@ class IncidenceController extends Controller
         }
     }
 
-    function edit(Request $request){
+    public function edit(Request $request){
         $id = $request->input('id');
         $incidence = Incidence::find($id);
 
@@ -66,7 +68,6 @@ class IncidenceController extends Controller
         $incidence->state = $request->input('state');
 
         $incidence->save();
-        //Faltan redirecciones a vista de OK
         return redirect()->to('/edited');
     }
 }
