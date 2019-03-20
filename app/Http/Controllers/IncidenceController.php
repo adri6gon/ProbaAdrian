@@ -25,6 +25,10 @@ class IncidenceController extends Controller
             'location' => $request->input('location'),
             'state' => $request->input('state')
         ]);
+        //$path = $request->file('image')->store('images');
+        Storage::disk('local')->put($request->input('image'),$request->image);
+        //$path = Storage::putFile('images', $request->file('image'));
+        //$this->storeImage($request);     
              
         return redirect()->to('/added');
     }
