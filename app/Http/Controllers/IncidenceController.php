@@ -13,7 +13,6 @@ class IncidenceController extends Controller
 
     public function create(Request $request)
     {
-       
         $incidence =  Incidence::create([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
@@ -25,17 +24,7 @@ class IncidenceController extends Controller
             'location' => $request->input('location'),
             'state' => $request->input('state')
         ]);
-       
-        
-        //Storage::putFile('image', new File('storage/app/public/images'));
-        //$path = $request->file('image')->store('images');
-        //var_dump($request->file('image'));
-     
-        //exit();
-        Storage::disk('local')->put($request->input('image'),$request->image);
-        //$path = Storage::putFile('images', $request->file('image'));
-        //$this->storeImage($request);     
-             
+        $this->uploadFile($request);
         return redirect()->to('/added');
     }
     public function getData(){
@@ -43,8 +32,17 @@ class IncidenceController extends Controller
         if($data != null)
             return view('/home', $data);
         else{
-            //return view("/home");
+            return false;
         }
+    }
+    public function uploadFile(Request $request){
+        $path = Storage::disk('local')->put($request->input('image'),$request->file('image'));
+        //var_dump($path);
+        //exit(); 
+        return $path; 
+    }
+    public function deleteOldImage($image){
+        Storage::delete($image);
     }
 
     public function getRow(Request $request){
@@ -65,6 +63,7 @@ class IncidenceController extends Controller
     public function edit(Request $request){
         $id = $request->input('id');
         $incidence = Incidence::find($id);
+        $this->deleteOldImage($incidence->image);
 
         $incidence->name = $request->input('name');
         $incidence->lastname = $request->input('lastname');
@@ -75,6 +74,8 @@ class IncidenceController extends Controller
         $incidence->description = $request->input('description');
         $incidence->location = $request->input('location');
         $incidence->state = $request->input('state');
+        $this->uploadFile($request);
+
 
         $incidence->save();
         return redirect()->to('/edited');

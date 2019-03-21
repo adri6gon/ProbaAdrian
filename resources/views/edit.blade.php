@@ -117,7 +117,7 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="email" value="{{$incidence->email}}" required autofocus>
 
-                                @if ($errors->has('lastname'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -130,9 +130,9 @@
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="phone" value="{{$incidence->phone}}" required autofocus>
 
-                                @if ($errors->has('lastname'))
+                                @if ($errors->has('phone'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -141,13 +141,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" value="{{$incidence->image}}" required autofocus>
-
-                                @if ($errors->has('lastname'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
+                                <input id="image" type="file" name="image"  required autofocus/>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -156,7 +150,7 @@
                             <div class="col-md-6">
                                 <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{$incidence->location}}" required autofocus>
 
-                                @if ($errors->has('lastname'))
+                                @if ($errors->has('location'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('location') }}</strong>
                                     </span>

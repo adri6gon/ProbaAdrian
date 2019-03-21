@@ -80,8 +80,7 @@
             @endif
             <div class="content">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
+                    <div class="col-md-8">
                                 <div class="card-header">{{ __('Add incidence') }}</div>
                                    <form method="POST" action="/add-incidence" enctype=”multipart/form-data”>
                                                 @csrf
@@ -116,9 +115,9 @@
                                                     <label for="email">{{ __('Email') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-                                                        @if ($errors->has('lastname'))
+                                                        @if ($errors->has('email'))
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $errors->first('email') }}</strong>
                                                             </span>
@@ -129,11 +128,11 @@
                                                     <label for="phone" >{{ __('Phone') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
 
-                                                        @if ($errors->has('lastname'))
+                                                        @if ($errors->has('phone'))
                                                             <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('lastname') }}</strong>
+                                                                <strong>{{ $errors->first('phone') }}</strong>
                                                             </span>
                                                         @endif
                                                     </div>
@@ -142,22 +141,16 @@
                                                     <label for="image">{{ __('Image') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input type="file" name="image">
-
-                                                        @if ($errors->has('image'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('image') }}</strong>
-                                                            </span>
-                                                        @endif
+                                                        <input type="file" id="image" name="image"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="location" >{{ __('Location') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="location" type="text" class="form-control" name="location" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required autofocus>
 
-                                                        @if ($errors->has('lastname'))
+                                                        @if ($errors->has('location'))
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $errors->first('location') }}</strong>
                                                             </span>
@@ -206,7 +199,6 @@
                                                 </div>
                                         </form>
                                 </div>
-                        </div>
                     </div>
                 </div>
             </div>

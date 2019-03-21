@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
         <div class="col-md-8">
        <!--<showtable-component fetch-url="{{ route('home') }}":columns="['id', 'name','lastname', 'phone','email','image','category','description','location','state','Actions']"></showtable-component>-->
         <table class="table">
