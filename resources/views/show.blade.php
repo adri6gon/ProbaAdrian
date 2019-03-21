@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <table>
+        <table class="table">
                 <tr><td>id</td><td>{{$incidence->id}}<td></tr>
                 <tr><td>Name</td><td>{{$incidence->name}}</td></tr>
                 <tr><td>Lastname</td><td>{{$incidence->lastname}}</td></tr>

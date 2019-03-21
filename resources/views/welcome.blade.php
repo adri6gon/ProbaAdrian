@@ -82,17 +82,15 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
-                            <div class="card">
                                 <div class="card-header">{{ __('Add incidence') }}</div>
-                                    <div class="card-body">
-                                        <form method="POST" action="/add-incidence">
+                                   <form method="POST" action="/add-incidence" enctype=”multipart/form-data”>
                                                 @csrf
 
                                                 <div class="form-group row">
-                                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                                    <label for="name">{{ __('Name') }}</label>
 
-                                                    <div class="col-md-6">
-                                                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                                  <div class="col-md-6">
+                                                        <input id="name" type="text" class="form-control form-control-lg" name="name" value="{{ old('name') }}" required autofocus>
 
                                                         @if ($errors->has('name'))
                                                             <span class="invalid-feedback" role="alert">
@@ -102,10 +100,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
+                                                    <label for="lastname" >{{ __('Lastname') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
 
                                                         @if ($errors->has('lastname'))
                                                             <span class="invalid-feedback" role="alert">
@@ -115,10 +113,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                                                    <label for="email">{{ __('Email') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="email" type="email" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="email" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('lastname') }}" required autofocus>
 
                                                         @if ($errors->has('lastname'))
                                                             <span class="invalid-feedback" role="alert">
@@ -128,10 +126,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+                                                    <label for="phone" >{{ __('Phone') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="phone" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="phone" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('lastname') }}" required autofocus>
 
                                                         @if ($errors->has('lastname'))
                                                             <span class="invalid-feedback" role="alert">
@@ -141,12 +139,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                                                    <label for="image">{{ __('Image') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="image" type="file" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="image" data-buttonText="Browse" required autofocus>
+                                                        <input type="file" name="image">
 
-                                                        @if ($errors->has('lastname'))
+                                                        @if ($errors->has('image'))
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $errors->first('image') }}</strong>
                                                             </span>
@@ -154,10 +152,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
+                                                    <label for="location" >{{ __('Location') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('lastname') }}" required autofocus>
+                                                        <input id="location" type="text" class="form-control" name="location" value="{{ old('lastname') }}" required autofocus>
 
                                                         @if ($errors->has('lastname'))
                                                             <span class="invalid-feedback" role="alert">
@@ -167,7 +165,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
+                                                    <label for="state" >{{ __('State') }}</label>
 
                                                     <div class="col-md-6">
                                                         <select id="state" name="state">
@@ -178,7 +176,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+                                                    <label for="category" >{{ __('Category') }}</label>
 
                                                     <div class="col-md-6">
                                                         <select id="category" name="category">
@@ -191,7 +189,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                                                    <label for="description" >{{ __('Description') }}</label>
 
                                                     <div class="col-md-6">
                                                         <textarea id="description" name="description"></textarea>
@@ -207,9 +205,7 @@
                                                     </div>
                                                 </div>
                                         </form>
-                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

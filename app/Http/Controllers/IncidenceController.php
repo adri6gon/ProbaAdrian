@@ -25,14 +25,19 @@ class IncidenceController extends Controller
             'location' => $request->input('location'),
             'state' => $request->input('state')
         ]);
+       
+        
+        //Storage::putFile('image', new File('storage/app/public/images'));
         //$path = $request->file('image')->store('images');
+        //var_dump($request->file('image'));
+     
+        //exit();
         Storage::disk('local')->put($request->input('image'),$request->image);
         //$path = Storage::putFile('images', $request->file('image'));
         //$this->storeImage($request);     
              
         return redirect()->to('/added');
     }
-
     public function getData(){
         $data['data'] = DB::table("incidences")->get();
         if($data != null)

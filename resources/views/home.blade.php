@@ -4,36 +4,40 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-       <!-- <showtable-component></showtable-component>-->
-       <table>
+       <!--<showtable-component fetch-url="{{ route('home') }}":columns="['id', 'name','lastname', 'phone','email','image','category','description','location','state','Actions']"></showtable-component>-->
+        <table class="table">
+           <thead>
             <tr>
-                <td>id</td>
-                <td>Name</td>
-                <td>Lastname</td>
-                <td>Phone</td>
-                <td>Email</td>
-                <td>Image</td>
-                <td>Category</td>
-                <td>Description</td>
-                <td>Location</td>
-                <td>State</td>
-                <td>Actions</td>
+               <th scope="col">id</td>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">State</th>
+                <th scope="col">Actions</th>
             </tr>
+            </thead>
+            <tbody>
             @foreach($data as $value)
             <tr>
-                <td>{{$value->id}}</td>
-                <td>{{$value->name}}</td>
-                <td>{{$value->lastname}}</td>
-                <td>{{$value->phone}}</td>
-                <td>{{$value->email}}</td>
-                <td>{{$value->image}}</td>
-                <td>{{$value->category}}</td>
-                <td>{{$value->description}}</td>
-                <td>{{$value->location}}</td>
-                <td>{{$value->state}}</td>
-                <td><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href="{{'/show?id='.$value->id}}"><button>Show</button></a></td>
+                <th>{{$value->id}}</th>
+                <th>{{$value->name}}</th>
+                <th>{{$value->lastname}}</th>
+                <th>{{$value->phone}}</th>
+                <th>{{$value->email}}</th>
+                <th>{{$value->image}}</th>
+                <th>{{$value->category}}</th>
+                <th>{{$value->description}}</th>
+                <th>{{$value->location}}</th>
+                <th>{{$value->state}}</th>
+                <th><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href="{{'/show?id='.$value->id}}"><button>Show</button></a></th>
             </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
 </div>

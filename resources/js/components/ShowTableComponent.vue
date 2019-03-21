@@ -1,56 +1,66 @@
 <template>
+  <div class="data-table">
     <table class="table">
-        <thead>
-            <tr>
-            <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Email</th>
-            <th scope="col">Image</th>
-            <th scope="col">Category</th>
-            <th scope="col">Description</th>
-            <th scope="col">Location</th>
-            <th scope="col">State</th>
-            <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="value in data">
-                <th scope="row">{{value.id}}</th>
-                <td>{{value.name}}</td>
-                <td>{{value.lastname}}</td>
-                <td>{{value.phone}}</td>
-                <td>{{value.email}}</td>
-                <td>{{value.image}}</td>
-                <td>{{value.category}}</td>
-                <td>{{value.description}}</td>
-                <td>{{value.location}}</td>
-                <td>{{value.state}}</td>
-                <!--<td><a href="{{'/edit-incidence?id='.$value->id}}"><button>Edit</button></a><a href="{{'/show?id='.$value->id}}"><button>Show</button></a>-->
-            </tr>
-        </tbody>
+      <thead>
+      <tr>
+        <th class="table-head">#</th>
+        <th v-for="column in columns" :key="column"
+            class="table-head">
+          {{ column | columnHead }}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="" v-if="tableData.length === 0">
+        <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
+      </tr>
+      <tr v-for="(data, key1) in tableData" :key="data.id" class="m-datatable__row" v-else>
+        <td>{{ serialNumber(key1) }}</td>
+        <td v-for="(value, key) in data">{{ value }}</td>
+      </tr>
+      </tbody>
+
     </table>
+  </div>
 </template>
 
-<script>
-    export default {
-        mounted() {
-            this.getData()
-        },
-        data(){
-            return{
-                data: []
-            }
-        },
-        methods:{
-            getData(){
-                var urlData = "home";
-                axios.get(urlData).then(response=>{
-                    this.data = response.data
-                });
-            }
-        }
-
+<script type="text/ecmascript-6">
+export default {
+  props: {
+    fetchUrl: { type: String, required: true },
+    columns: { type: Array, required: true },
+  },
+  data() {
+    return {
+      tableData: []
     }
+  },
+  created() {
+    return this.fetchData(this.fetchUrl)
+  },
+  methods: {
+    fetchData(url) {
+      axios.get(url)
+        .then(data => {
+          this.tableData = data.data.data
+        })
+    },
+    /**
+     * Get the serial number.
+     * @param key
+     * */
+    serialNumber(key) {
+      return key + 1;
+    },
+  },
+  filters: {
+    columnHead(value) {
+      return value.split('_').join(' ').toUpperCase()
+    }
+  },
+  name: 'DataTable'
+}
 </script>
+
+<style scoped>
+</style>
